@@ -44,7 +44,7 @@ public class TokenWallStories extends JUnitStories {
     public InjectableStepsFactory stepsFactory() {
         ApplicationContext context =
                 new SpringApplicationContextFactory("classpath:com/includestudio/tokenwall/integration/applicationContext-steps.xml",
-                        "classpath:applicationContext.xml").createApplicationContext();
+                        "classpath:config/applicationContext.xml").createApplicationContext();
         return new SpringStepsFactory(configuration(), context);
     }
 
