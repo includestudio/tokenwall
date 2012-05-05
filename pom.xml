@@ -7,10 +7,16 @@
     <groupId>com.includestudio</groupId>
     <artifactId>tokenwall</artifactId>
     <version>1.0</version>
+    <packaging>war</packaging>
 
     <properties>
+        <embeddables>**/*Stories.java</embeddables>
+        <ignore.failure.in.stories>true</ignore.failure.in.stories>
+        <ignore.failure.in.view>true</ignore.failure.in.view>
+
         <spring.batch.version>2.1.8.RELEASE</spring.batch.version>
         <springframework.core.version>3.1.1.RELEASE</springframework.core.version>
+        <org.jbehave.version>3.6.5</org.jbehave.version>
     </properties>
 
     <dependencyManagement>
@@ -57,6 +63,36 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.6.1</version>
@@ -67,31 +103,11 @@
             <version>1.6.1</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.ftpserver</groupId>
-            <artifactId>ftpserver-core</artifactId>
-            <version>1.0.6</version>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
         </dependency>
-        <dependency>
-            <groupId>commons-net</groupId>
-            <artifactId>commons-net</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-core</artifactId>
-            <version>${spring.batch.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-infrastructure</artifactId>
-            <version>${spring.batch.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.batch</groupId>
-            <artifactId>spring-batch-test</artifactId>
-            <version>${spring.batch.version}</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -108,6 +124,29 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-core</artifactId>
+            <version>${org.jbehave.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-spring</artifactId>
+            <version>${org.jbehave.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-core</artifactId>
+            <version>${org.jbehave.version}</version>
+            <classifier>resources</classifier>
+            <type>zip</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jbehave.site</groupId>
+            <artifactId>jbehave-site-resources</artifactId>
+            <version>3.1.1</version>
+            <type>zip</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -122,6 +161,54 @@
                     </includes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <version>${org.jbehave.version}</version>
+                <executions>
+                    <execution>
+                        <id>unpack-view-resources</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <scope>test</scope>
+                        </configuration>
+                        <goals>
+                            <goal>unpack-view-resources</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>embeddable-stories</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <includes>
+                                <include>${embeddables}</include>
+                            </includes>
+                            <excludes/>
+                            <skip>false</skip>
+                            <batch>false</batch>
+                            <generateViewAfterStories>true</generateViewAfterStories>
+                            <ignoreFailureInStories>${ignore.failure.in.stories}</ignoreFailureInStories>
+                            <ignoreFailureInView>${ignore.failure.in.view}</ignoreFailureInView>
+                            <threads>2</threads>
+                            <!--<metaFilters>-->
+                            <!--<metaFilter>${meta.filter}</metaFilter>-->
+                            <!--</metaFilters>-->
+                            <scope>test</scope>
+                        </configuration>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                        <version>1.2.16</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
         </plugins>
     </build>
 
