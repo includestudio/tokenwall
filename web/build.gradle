@@ -1,7 +1,6 @@
 apply plugin : 'war'
 apply plugin : 'jetty'
 
-name = 'tokenwall-web'
 version = 1.0
 
 dependencies {
@@ -17,9 +16,6 @@ dependencies {
     compile 'org.slf4j:slf4j-log4j12:1.6.1'
     compile 'log4j:log4j:1.2.16'
     compile 'org.freemarker:freemarker:2.3.+'
-    compile 'org.jbehave:jbehave-core:3.6.5'
-    compile 'org.jbehave:jbehave-spring:3.6.5'
-    compile 'org.jbehave:jbehave-ant:3.6.5'
 
     providedCompile 'javax.servlet:servlet-api:2.5'
 
@@ -29,4 +25,27 @@ dependencies {
 
 test {
     include 'com/includestudio/tokenwall/unit/**'
+}
+
+war {
+    archiveName 'tokenwall.war'
+}
+
+
+jettyRun {
+   contextPath 'tokenwall'
+   daemon false
+}
+
+
+jettyRunWar {
+   contextPath 'tokenwall'
+   daemon true
+   stopKey 'foo'
+   stopPort 8081
+}
+
+jettyStop {
+    stopKey 'foo'
+    stopPort 8081
 }
