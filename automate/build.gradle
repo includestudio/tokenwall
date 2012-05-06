@@ -1,0 +1,26 @@
+
+name = 'tokenwall-automate'
+version = '1.0'
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.6.1'
+    compile 'org.slf4j:slf4j-log4j12:1.6.1'
+    compile 'log4j:log4j:1.2.16'
+    compile 'org.jbehave:jbehave-core:3.6.5'
+    compile 'org.jbehave:jbehave-spring:3.6.5'
+    compile 'org.jbehave:jbehave-ant:3.6.5'
+    compile 'junit:junit:4.+'
+}
+
+
+task automate << {
+
+    ant.taskdef(
+            name: 'jbehave',
+            classname: 'org.jbehave.ant.RunStoriesAsEmbeddables',
+            classpath: configurations.compile.asPath)
+
+    ant.jbehave(
+            includes: 'src/main/java/com/includestudio/tokenwall/integration/TokenWallStories.java',
+            generateViewAfterStories: true)
+}

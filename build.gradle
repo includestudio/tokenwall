@@ -1,44 +1,22 @@
-apply plugin : 'war'
-apply plugin : 'jetty'
+apply plugin: 'idea'
 
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
-version = '1.0'
+name = 'tokenwall'
+version = 1.0
+subprojects {
 
+    apply plugin: 'java'
 
-repositories {
-    mavenLocal()
-    mavenCentral()
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
 }
 
-configurations {
-}
 
-dependencies {
-    compile 'org.springframework:spring-web:3.1.1.RELEASE'
-    compile 'org.springframework:spring-webmvc:3.1.1.RELEASE'
-    compile 'org.springframework:spring-beans:3.1.1.RELEASE'
-    compile 'org.springframework:spring-aop:3.1.1.RELEASE'
-    compile 'org.springframework:spring-context:3.1.1.RELEASE'
-    compile 'org.springframework:spring-core:3.1.1.RELEASE'
-    compile 'org.springframework:spring-jdbc:3.1.1.RELEASE'
-    compile 'org.springframework:spring-tx:3.1.1.RELEASE'
-    compile 'org.slf4j:slf4j-api:1.6.1'
-    compile 'org.slf4j:slf4j-log4j12:1.6.1'
-    compile 'log4j:log4j:1.2.16'
-    compile 'org.freemarker:freemarker:2.3.+'
-    compile 'org.jbehave:jbehave-core:3.6.5'
-    compile 'org.jbehave:jbehave-spring:3.6.5'
-
-    providedCompile 'javax.servlet:servlet-api:2.5'
-
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.springframework:spring-test:3.1.1.RELEASE'
-}
-
-test {
-    include 'com/includestudio/tokenwall/unit/**'
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.0-rc-3'
