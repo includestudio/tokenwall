@@ -2,10 +2,11 @@ Meta:
 
 Narrative:
 As a user
-I want to perform an addition
-So that I can test my IQ
+I want to see welcome message
+So that I feel happy
 
-Scenario: simple addition
-Given number 3 and 5
-When I do addition
-Then result should be 8
+Scenario: show welcome page
+Given URL 'http://localhost:8080/tokenwall'
+When I open it
+Then I am on welcome page
+And It says 'Welcome!'
