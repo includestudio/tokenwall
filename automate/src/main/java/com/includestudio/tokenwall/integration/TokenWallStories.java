@@ -11,6 +11,7 @@ import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.spring.SpringApplicationContextFactory;
 import org.jbehave.core.steps.spring.SpringStepsFactory;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
@@ -23,6 +24,17 @@ public class TokenWallStories extends JUnitStories {
     StoryReporterBuilder reporterBuilder = new StoryReporterBuilder()
             .withCodeLocation(codeLocationFromClass(TokenWallStories.class)).withFailureTrace(true)
             .withFailureTraceCompression(true).withDefaultFormats().withFormats(Format.CONSOLE, Format.HTML);
+
+
+    @Test
+    @Override
+    public void run() throws Throwable {
+        try{
+         super.run();    //To change body of overridden methods use File | Settings | File Templates.
+        }catch(Throwable t){
+
+        }
+    }
 
     @Override
     public Configuration configuration() {
