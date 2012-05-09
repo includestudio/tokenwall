@@ -18,21 +18,20 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
+import static org.jbehave.core.reporters.Format.*;
 
 public class TokenWallStories extends JUnitStories {
 
-    StoryReporterBuilder reporterBuilder = new StoryReporterBuilder()
-            .withCodeLocation(codeLocationFromClass(TokenWallStories.class)).withFailureTrace(true)
-            .withFailureTraceCompression(true).withDefaultFormats().withFormats(Format.CONSOLE, Format.HTML);
-
+    public static final String JBEHAVE_REPORTS_RELATIVE_PATH = "../jbehave";
+    public static final String STORY_PATH_PATTERN = "**/stories/*.story";
+    public static final String STEPS_CONTEXT_XML = "classpath:com/includestudio/tokenwall/integration/applicationContext-steps.xml";
 
     @Test
     @Override
     public void run() throws Throwable {
-        try{
-         super.run();    //To change body of overridden methods use File | Settings | File Templates.
-        }catch(Throwable t){
-
+        try {
+            super.run();
+        } catch (Throwable t) {
         }
     }
 
@@ -41,23 +40,23 @@ public class TokenWallStories extends JUnitStories {
         return new MostUsefulConfiguration()
                 .useFailureStrategy(new FailingUponPendingStep())
                 .useStoryLoader(new LoadFromClasspath(TokenWallStories.class))
-                .useStoryReporterBuilder(reporterBuilder);
+                .useStoryReporterBuilder(new StoryReporterBuilder()
+                        .withRelativeDirectory(JBEHAVE_REPORTS_RELATIVE_PATH)
+                        .withCodeLocation(codeLocationFromClass(TokenWallStories.class)).withFailureTrace(true)
+                        .withFailureTraceCompression(true).withDefaultFormats().withFormats(XML, CONSOLE, HTML));
     }
-
 
     @Override
     protected List<String> storyPaths() {
         return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()).getFile(),
-                asList("**/stories/*.story"), null);
+                asList(STORY_PATH_PATTERN), null);
     }
 
     @Override
     public InjectableStepsFactory stepsFactory() {
         ApplicationContext context =
-                new SpringApplicationContextFactory("classpath:com/includestudio/tokenwall/integration/applicationContext-steps.xml").createApplicationContext();
+                new SpringApplicationContextFactory(STEPS_CONTEXT_XML).createApplicationContext();
         return new SpringStepsFactory(configuration(), context);
     }
-
-
 
 }
