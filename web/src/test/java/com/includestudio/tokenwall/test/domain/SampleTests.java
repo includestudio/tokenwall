@@ -1,4 +1,4 @@
-package com.includestudio.tokenwall.unit.domain;
+package com.includestudio.tokenwall.test.domain;
 
 import com.includestudio.tokenwall.domain.Sample;
 import org.junit.Test;

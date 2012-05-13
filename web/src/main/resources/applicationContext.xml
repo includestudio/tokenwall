@@ -9,7 +9,9 @@
 
     <context:annotation-config />
 
-    <import resource="classpath:config/applicationContext-interfaces-web.xml" />
-    <import resource="classpath:config/applicationContext-domain.xml" />
+    <import resource="classpath:applicationContext-interfaces-web.xml" />
+    <import resource="classpath:applicationContext-domain.xml" />
+    <import resource="classpath:applicationContext-repository.xml" />
+    <import resource="classpath:applicationContext-service.xml" />
 
 </beans>

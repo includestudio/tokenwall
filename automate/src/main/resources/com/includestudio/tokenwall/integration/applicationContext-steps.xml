@@ -7,4 +7,7 @@
     <bean id="sampleSteps" class="com.includestudio.tokenwall.integration.steps.SampleSteps">
     </bean>
 
+    <bean id="iCanRegisterSteps" class="com.includestudio.tokenwall.integration.steps.ICanRegisterSteps">
+    </bean>
+
 </beans>

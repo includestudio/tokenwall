@@ -16,11 +16,15 @@ subprojects {
         mavenLocal()
         mavenCentral()
 
+        maven {
+            url "https://repository.jboss.org/nexus/content/repositories/releases"
+        }
+
     }
 }
 
 
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.0-rc-3'
-}
+//
+//task wrapper(type: Wrapper) {
+//    gradleVersion = '1.0-rc-3'
+//}
