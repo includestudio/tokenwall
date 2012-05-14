@@ -5,7 +5,7 @@
 </head>
 <body>
 <h3>Register!</h3>
-<form>
+<form action="/tokenwall/register" method="post">
     <table>
         <tr>
             <td><label>User name:</label></td>
@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input id="submit" type="submit" name="register" value="Register" /></td>
+            <td><input id="register" type="submit" name="register" value="Register" /></td>
         </tr>
     </table>
 </form>

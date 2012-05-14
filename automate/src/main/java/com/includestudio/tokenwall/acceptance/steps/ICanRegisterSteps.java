@@ -1,55 +1,58 @@
 package com.includestudio.tokenwall.acceptance.steps;
 
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Pending;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
+import org.jbehave.core.annotations.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Since: 5/13/12
  */
 public class ICanRegisterSteps {
 
-    @Pending
+    private WebDriver webDriver;
+
+    @BeforeScenario
+    public void beforeScenario(){
+        webDriver = new HtmlUnitDriver();
+    }
+
     @Given("I am on register page")
     public void navigateToRegisterPage(){
-
+       webDriver.navigate().to("http://localhost:8080/tokenwall/register");
     }
 
-    @Pending
     @When("I input username $username")
     public void inputUsername(String username){
-
+       webDriver.findElement(By.id("username")).sendKeys(username);
     }
 
-    @Pending
     @When("I input password $password")
     public void inputPassword(String password){
-
+      webDriver.findElement(By.id("password")).sendKeys(password);
     }
 
-    @Pending
     @When("I confirm password $passwordConfirm")
     public void confirmPassword(String passwordConfirm){
-
+      webDriver.findElement(By.id("confirm")).sendKeys(passwordConfirm);
     }
 
-    @Pending
     @When("I submit")
     public void submit(){
-
+      webDriver.findElement(By.id("register")).click();
     }
 
-    @Pending
-    @Then("I am notified register successfully")
-    public void succeed(){
-
+    @Then("I am on page with title '$title'")
+    public void shouldRedirectToPage(String title){
+      assertThat(webDriver.getTitle(), is(title));
     }
 
-    @Pending
-    @Then("I am redirected to home page automatically after $seconds seconds")
-    public void redirectedToHomePage(int seconds){
-
+    @AfterScenario
+    public void afterScenario(){
+        webDriver.close();
     }
 
 }

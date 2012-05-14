@@ -11,5 +11,12 @@ When I input username testuser
 And I input password pa33w0rd
 And I confirm password pa33w0rd
 And I submit
-Then I am notified register successfully
-And I am redirected to home page automatically after 3 seconds
+Then I am on page with title 'Register Success'
+
+Scenario: confirm password not matching
+Given I am on register page
+When I input username testuser
+And I input password pa33w0rd
+And I confirm password pa33w0r4
+And I submit
+Then I am on page with title 'Register Failed'
