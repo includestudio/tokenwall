@@ -4,10 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <bean id="sampleSteps" class="com.includestudio.tokenwall.integration.steps.SampleSteps">
+    <bean id="sampleSteps" class="com.includestudio.tokenwall.acceptance.steps.SampleSteps">
     </bean>
 
-    <bean id="iCanRegisterSteps" class="com.includestudio.tokenwall.integration.steps.ICanRegisterSteps">
+    <bean id="iCanRegisterSteps" class="com.includestudio.tokenwall.acceptance.steps.ICanRegisterSteps">
     </bean>
 
 </beans>

@@ -1,4 +1,4 @@
-package com.includestudio.tokenwall.test.repository;
+package com.includestudio.tokenwall.acceptance.repository;
 
 import com.includestudio.tokenwall.domain.User;
 import com.includestudio.tokenwall.repository.UserRepository;

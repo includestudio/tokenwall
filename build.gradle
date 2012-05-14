@@ -23,6 +23,14 @@ subprojects {
     }
 }
 
+task runSpec(dependsOn: ':automate:spec') << {
+}
+
+task runUnitTest(dependsOn: ':web:unitTest') << {
+}
+
+task runIntegrationTest(dependsOn: ':web:integrationTest') << {
+}
 
 //
 //task wrapper(type: Wrapper) {

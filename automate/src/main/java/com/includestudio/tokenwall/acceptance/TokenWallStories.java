@@ -1,4 +1,4 @@
-package com.includestudio.tokenwall.integration;
+package com.includestudio.tokenwall.acceptance;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -6,7 +6,6 @@ import org.jbehave.core.failures.FailingUponPendingStep;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
-import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.spring.SpringApplicationContextFactory;
@@ -24,7 +23,7 @@ public class TokenWallStories extends JUnitStories {
 
     public static final String JBEHAVE_REPORTS_RELATIVE_PATH = "../jbehave";
     public static final String STORY_PATH_PATTERN = "**/stories/*.story";
-    public static final String STEPS_CONTEXT_XML = "classpath:com/includestudio/tokenwall/integration/applicationContext-steps.xml";
+    public static final String STEPS_CONTEXT_XML = "classpath:com/includestudio/tokenwall/acceptance/applicationContext-steps.xml";
 
     @Test
     @Override

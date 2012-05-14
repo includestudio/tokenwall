@@ -29,7 +29,22 @@ dependencies {
 }
 
 test {
-    include 'com/includestudio/tokenwall/test/**'
+    excludes = ['**/*']
+}
+
+task unitTest(type:Test,dependsOn:'classes') {
+    classpath = sourceSets.test.runtimeClasspath
+    includes = ['com/includestudio/tokenwall/unit/**']
+    testReportDir = file('build/unit-test/report')
+    testResultsDir = file('build/unit-test/result')
+}
+
+task integrationTest(type:Test,dependsOn:'unitTest') {
+    classpath = sourceSets.test.runtimeClasspath
+    testClassesDir  sourceSets.test.output.classesDir
+    includes = ['com/includestudio/tokenwall/integration/**']
+    testReportDir = file('build/integration-test/report')
+    testResultsDir = file('build/integration-test/result')
 }
 
 war {

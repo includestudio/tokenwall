@@ -1,4 +1,4 @@
-package com.includestudio.tokenwall.integration.steps;
+package com.includestudio.tokenwall.acceptance.steps;
 
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Pending;

@@ -1,4 +1,4 @@
-package com.includestudio.tokenwall.integration.steps;
+package com.includestudio.tokenwall.acceptance.steps;
 
 import org.jbehave.core.annotations.*;
 import org.openqa.selenium.By;

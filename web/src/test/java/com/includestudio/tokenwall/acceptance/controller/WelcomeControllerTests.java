@@ -1,4 +1,4 @@
-package com.includestudio.tokenwall.test.controller;
+package com.includestudio.tokenwall.acceptance.controller;
 
 import com.includestudio.tokenwall.controller.WelcomeController;
 import org.junit.Test;
