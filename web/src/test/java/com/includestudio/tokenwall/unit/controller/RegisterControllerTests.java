@@ -5,6 +5,8 @@ import com.includestudio.tokenwall.domain.User;
 import com.includestudio.tokenwall.service.UserService;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 
 import static org.easymock.EasyMock.*;
 import static org.hamcrest.core.Is.is;
@@ -38,7 +40,8 @@ public class RegisterControllerTests {
 
         replay(userService);
 
-        String viewId = controller.register(request);
+        Model model = new ExtendedModelMap();
+        String viewId = controller.register(model, request);
 
         verify(userService);
 
@@ -46,7 +49,7 @@ public class RegisterControllerTests {
     }
 
     @Test
-    public void should_return_fail_if_confirm_password_not_matching() throws Exception {
+    public void should_return_register_and_set_error_if_confirm_password_not_matching() throws Exception {
         RegisterController controller = new RegisterController();
 
         UserService userService = createMock(UserService.class);
@@ -57,13 +60,16 @@ public class RegisterControllerTests {
         request.addParameter("password", "pa33w0rd");
         request.addParameter("confirm", "pa33w0r4");
 
+        ExtendedModelMap model = new ExtendedModelMap();
+
         replay(userService);
 
-        String viewId = controller.register(request);
+        String viewId = controller.register(model,request);
 
         verify(userService);
 
-        assertThat(viewId, is("register/fail"));
+        assertThat(viewId, is("register/register"));
+        assertThat((String) model.get("error"), is("Confirm password not matching"));
     }
 
 }

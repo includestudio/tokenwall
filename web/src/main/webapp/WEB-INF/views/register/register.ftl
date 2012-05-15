@@ -5,6 +5,13 @@
 </head>
 <body>
 <h3>Register!</h3>
+<div>
+    <ul>
+        <#if error??>
+        <li id="error">${error}</li>
+        </#if>
+    </ul>
+</div>
 <form action="/tokenwall/register" method="post">
     <table>
         <tr>
