@@ -5,7 +5,7 @@ apply plugin : 'idea'
 version = 1.0
 
 repositories {
-	mavenLocal()
+//	mavenLocal()
 	mavenCentral()
 }
 
@@ -25,9 +25,12 @@ dependencies {
     compile 'log4j:log4j:1.2.16'
     compile 'org.freemarker:freemarker:2.3.+'
     compile 'org.hibernate:hibernate-core:4.1.3.Final'
+    compile 'org.hibernate:hibernate-validator:4.3.0.Final'
     compile 'hsqldb:hsqldb:1.8.0.10'
     compile 'c3p0:c3p0:0.9.1.2'
     compile 'cglib:cglib-nodep:2.2.2'
+    compile 'org.apache.commons:commons-lang3:3.1'
+
     providedCompile 'javax.servlet:servlet-api:2.5'
 
     testCompile 'junit:junit:4.+'
@@ -75,4 +78,8 @@ jettyRunWar {
 jettyStop {
     stopKey 'foo'
     stopPort 8081
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.0'
 }
