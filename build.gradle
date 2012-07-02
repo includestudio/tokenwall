@@ -30,6 +30,7 @@ dependencies {
     compile 'c3p0:c3p0:0.9.1.2'
     compile 'cglib:cglib-nodep:2.2.2'
     compile 'org.apache.commons:commons-lang3:3.1'
+    compile 'commons-collections:commons-collections:3.2.1'
 
     providedCompile 'javax.servlet:servlet-api:2.5'
 

@@ -44,7 +44,7 @@ public class User {
         return username.hashCode();
     }
 
-    protected User(){
+    protected User() {
 
     }
 }
