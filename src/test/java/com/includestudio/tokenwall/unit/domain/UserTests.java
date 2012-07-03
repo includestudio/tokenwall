@@ -22,14 +22,6 @@ public class UserTests {
 
     @Test
     public void should_Name() throws Exception {
-        Closure times = ClosureUtils.forClosure(10, new Closure() {
-            @Override
-            public void execute(Object input) {
-                System.out.println(input);
-            }
-        });
-
-        times.execute("mike");
     }
 
     @Before
