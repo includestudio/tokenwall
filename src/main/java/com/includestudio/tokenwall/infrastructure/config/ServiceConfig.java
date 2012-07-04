@@ -1,5 +1,7 @@
 package com.includestudio.tokenwall.infrastructure.config;
 
+import com.includestudio.tokenwall.application.AuthenticationService;
+import com.includestudio.tokenwall.application.impl.AuthenticationServiceImpl;
 import com.includestudio.tokenwall.domain.model.user.UserRepository;
 import com.includestudio.tokenwall.application.UserService;
 import com.includestudio.tokenwall.application.impl.UserServiceImpl;
@@ -18,6 +20,13 @@ public class ServiceConfig {
     @Bean
     public UserService userService() {
         return new UserServiceImpl(userRepository);
+    }
+
+    @Bean
+    public AuthenticationService authenticationService() {
+        AuthenticationServiceImpl authenticationService = new AuthenticationServiceImpl();
+        authenticationService.setUserRepository(userRepository);
+        return authenticationService;
     }
 
     @Autowired

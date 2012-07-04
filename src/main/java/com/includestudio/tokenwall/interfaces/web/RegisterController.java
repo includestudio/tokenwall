@@ -23,6 +23,11 @@ public class RegisterController {
 
     private UserService userService;
 
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage() {
+        return "users/login";
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String show(Model model) {
         model.addAttribute("command", new RegisterCommand());

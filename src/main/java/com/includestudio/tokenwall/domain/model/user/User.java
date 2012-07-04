@@ -20,7 +20,11 @@ public class User {
 
     public User(String username, String password) {
         this.username = username;
-        this.password = DigestUtils.md5DigestAsHex(password.getBytes());
+        this.password = md5(password);
+    }
+
+    private String md5(String password) {
+        return DigestUtils.md5DigestAsHex(password.getBytes());
     }
 
     public String getUsername() {
@@ -46,5 +50,9 @@ public class User {
 
     protected User() {
 
+    }
+
+    public Boolean verifyPassword(String password) {
+        return this.password.equals(md5(password));
     }
 }

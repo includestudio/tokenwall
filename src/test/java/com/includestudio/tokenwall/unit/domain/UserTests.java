@@ -20,33 +20,31 @@ import static org.junit.Assert.fail;
  */
 public class UserTests {
 
-    @Test
-    public void should_Name() throws Exception {
-    }
+    private User mike;
 
     @Before
     public void setUp() throws Exception {
+        mike = new User("mike", "password");
     }
 
     @Test
-    public void should_retrieve_username() throws Exception {
-        String username = "mike";
-        User mike = new User(username, "password");
-        assertThat(mike.getUsername(), is(username));
+    public void password_verify_return_true_when_provided_password_matching() throws Exception {
+        assertThat(mike.verifyPassword("password"), is(true));
+    }
 
+    @Test
+    public void password_verify_return_true_when_provided_password_not_matching() throws Exception {
+        assertThat(mike.verifyPassword("pass"), is(false));
     }
 
     @Test
     public void should_encrypt_password_in_md5_hex_string() throws Exception {
-        String password = "password";
-        User mike = new User("mike", password);
         String actualPassword = retrievePasswordViaReflection(mike);
-        assertThat(actualPassword, is(md5hex(password)));
+        assertThat(actualPassword, is(md5hex("password")));
     }
 
     @Test
     public void should_equal_if_same_username() throws Exception {
-        User mike = new User("mike","kdfjksdjfkds");
         User anotherMike = new User("mike", "password3");
         assertThat(anotherMike, is(mike));
     }
